@@ -1,0 +1,45 @@
+Insertion sort : 
+#include<iostream>
+using namespace std;
+int main(){
+	int n,temp;
+	
+	cout<<"Enter Number of Cards : "<<endl;
+	cin>>n;
+	
+	int cards[n];
+	for(int i=0;i<n-1;i++){
+		cout<<"Card key :";
+		cin>>cards[i];
+	}
+	
+	//insertion sort
+	for(int i = 1; i < n; i++){
+        temp = cards[i];      
+        int j = i - 1;
+
+        // Shift larger elements to the right
+        while(j >= 0 && cards[j] > temp){
+            cards[j + 1] = cards[j];
+            j--;
+        }
+
+        cards[j + 1] = temp;   
+
+        //  step-by-step sorting
+        cout << "After step " << i << ": ";
+        for(int k = 0; k < n; k++){
+            cout << cards[k] << " ";
+        }
+        cout << endl;
+    }
+
+    // Final scores
+    cout << "Sorted scores: " << endl;
+    for(int i = 0; i < n; i++){
+        cout << cards[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}

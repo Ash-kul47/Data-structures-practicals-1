@@ -1,0 +1,40 @@
+Game Development:
+write a game development program that implements the Bubble Sort algorithm. The
+program will simulate a simple game where the player can input a set of numbers,
+and the numbers will be sorted using Bubble Sort to simulate a "level-up" scenario
+where the player's scores are sorted in ascending order.
+
+
+Bubble sort : 
+#include<iostream>
+using namespace std;
+int main(){
+	int n,temp;
+	cout<<"Welcome to sorting game "<<endl;
+	cout<<" Number of players are 12 "<<endl;
+	n=12;
+	
+	int players[12];
+	for(int i=0;i<n;i++){
+		cout<<"Enter scores of players :"<<endl;
+		cin>>players[i];
+	}
+	for(int i=0;i<n;i++){
+		cout<<" Score of "<<i<< " is "<<players[i]<<endl;	
+	}
+	//bubble sort
+	for(int i = 0; i < n - 1; i++){
+		for(int j = 0; j < n - i - 1; j++){
+			if(players[j] > players[j + 1]){
+				temp = players[j];
+				players[j] = players[j + 1];
+				players[j + 1] = temp;
+			}
+		}
+	}
+	cout<<"sorted array "<<endl;
+	for(int i = 0;i<n;i++){
+		cout<<players[i]<<" "<<endl;
+	}
+	return 0 ;
+}

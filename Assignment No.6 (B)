@@ -1,0 +1,105 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define SIZE 5
+
+string jobs[SIZE];
+int front = -1, rear = -1;
+//insert job
+void insertJob() {
+    if ((front == 0 && rear == SIZE - 1) || (front == rear + 1)) 
+    {
+        cout << "\nSorry... Spooler is FULL!" << endl;
+        return;
+    }
+    string job;
+    cout << "\nEnter job name: ";
+    cin >> job;
+
+    if (front == -1) front = 0;
+    rear = (rear + 1) % SIZE;
+    jobs[rear] = job;
+
+    cout << "Print job \"" << job << "\" added to the spooler." << endl;
+}
+
+//delete job
+void deleteJob() 
+{
+    if (front == -1) 
+    {
+        cout << "\nSorry... Spooler is EMPTY!" << endl;
+        return;
+    }
+    cout << "Processing print job: \"" << jobs[front] << "\"" << endl;
+
+    if (front == rear) 
+    {
+        front = -1;
+        rear = -1;
+    } else {
+        front = (front + 1) % SIZE;
+    }
+}
+
+//show jobs
+void showJobs() 
+{
+    if (front == -1) 
+    {
+        cout << "\nSorry... Spooler is empty!" << endl;
+        return;
+    }
+    cout << "\nCurrent Print Queue: ";
+    int i = front;
+    while (true) 
+    {
+        cout << "\"" << jobs[i] << "\"";
+        if (i == rear) 
+        break;
+        cout << " -> ";
+        i = (i + 1) % SIZE;
+    }
+    cout << endl;
+}
+
+int main() 
+{
+    int choice;
+    while (1) 
+    {
+        cout << "\n--- Printer Spooler Menu ---\n";
+        cout << "1. Add Print Job\n";
+        cout << "2. Process Print Job\n";
+        cout << "3. Show All Print Jobs\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) 
+        {
+            case 1: 
+				insertJob(); 
+				break;
+				
+            case 2: 
+				deleteJob(); 
+				break;
+				
+            case 3: 
+				showJobs(); 
+				break;
+				
+            case 4: 
+				exit(0);
+            
+            default: cout << "\nInvalid choice!" << endl;
+        }
+    }
+    return 0;
+}
+
+
+
+
